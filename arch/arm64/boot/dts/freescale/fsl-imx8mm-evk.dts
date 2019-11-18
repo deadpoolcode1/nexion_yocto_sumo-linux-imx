@@ -240,7 +240,6 @@
 
 		pinctrl_pmic: pmicirq {
 			fsl,pins = <
-				MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x41
 			>;
 		};
 
