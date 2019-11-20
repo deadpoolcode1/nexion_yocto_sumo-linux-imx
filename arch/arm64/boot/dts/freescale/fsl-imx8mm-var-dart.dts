@@ -158,6 +158,12 @@
 
 	imx8mm-var-dart {
 
+                pinctrl_nexion: nexiongrp {
+                        fsl,pins = <
+                                MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1               0x19
+                        >;
+                };
+
 		pinctrl_csi1: csi1grp {
 			fsl,pins = <
 				MX8MM_IOMUXC_SAI1_RXD6_GPIO4_IO8		0x19
