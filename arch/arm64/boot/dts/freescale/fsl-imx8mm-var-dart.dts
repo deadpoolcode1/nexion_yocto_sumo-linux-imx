@@ -435,10 +435,6 @@
 			>;
 		};
 
-		pinctrl_pwm1: pwm1grp {
-			fsl,pins = <
-			>;
-		};
 
 		pinctrl_captouch: captouchgrp {
 			fsl,pins = <
@@ -967,11 +963,6 @@
 	};
 };
 
-&pwm1 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_pwm1>;
-};
 
 
 &flexspi {
