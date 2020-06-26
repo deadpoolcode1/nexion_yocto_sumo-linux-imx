@@ -452,8 +452,10 @@
 				MX8MQ_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x13
 				MX8MQ_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x13
 				MX8MQ_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x13
-				MX8MQ_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x13
-				MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x13
+                                MX8MQ_IOMUXC_ECSPI1_SS0_GPIO5_IO9               0x13
+                                MX8MQ_IOMUXC_SAI5_RXD1_GPIO3_IO22               0x13
+                                MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12              0x13
+                                MX8MQ_IOMUXC_GPIO1_IO10_GPIO1_IO10              0x13
 			>;
 		};
 
@@ -471,7 +473,6 @@
 
 		pinctrl_typec: typecgrp {
 			fsl,pins = <
-				MX8MQ_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x16
 			>;
 		};
 
@@ -1025,9 +1026,11 @@
 &ecspi1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_ecspi1>;
-	cs-gpios = <&gpio5  9 GPIO_ACTIVE_HIGH>,
-		   <&gpio1 12 GPIO_ACTIVE_HIGH>;
-	fsl,spi-num-chipselects = <2>;
+        cs-gpios = <&gpio5  9 GPIO_ACTIVE_HIGH>,
+                   <&gpio3 22 GPIO_ACTIVE_HIGH>,
+                   <&gpio1 12 GPIO_ACTIVE_HIGH>,
+                   <&gpio1 10 GPIO_ACTIVE_HIGH>;	
+	fsl,spi-num-chipselects = <4>;
 	status = "okay";
 
 	/* Resistive touch controller */
@@ -1066,6 +1069,11 @@
 		spi-max-frequency = <20000000>;
 		status = "okay";
 	};
+        chip1: spidev@0 {
+               compatible = "spidev";
+               spi-max-frequency = <12000000>;
+               reg = <0>;
+        };
 };
 
 &pwm1 {
