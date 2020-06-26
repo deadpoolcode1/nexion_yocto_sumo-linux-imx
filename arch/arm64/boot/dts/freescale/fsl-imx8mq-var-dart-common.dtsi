@@ -453,7 +453,9 @@
 				MX8MQ_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x13
 				MX8MQ_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x13
 				MX8MQ_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x13
+				MX8MQ_IOMUXC_SAI5_RXD1_GPIO3_IO22               0x13
 				MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x13
+				MX8MQ_IOMUXC_GPIO1_IO10_GPIO1_IO10              0x13
 			>;
 		};
 
@@ -466,12 +468,6 @@
 		pinctrl_restouch: restouchgrp {
 			fsl,pins = <
 				MX8MQ_IOMUXC_GPIO1_IO03_GPIO1_IO3		0xc0
-			>;
-		};
-
-		pinctrl_typec: typecgrp {
-			fsl,pins = <
-				MX8MQ_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x16
 			>;
 		};
 
@@ -702,15 +698,6 @@
 		touchscreen-inverted-y;
 	};
 
-	/* USB-C controller */
-	typec_ptn5150: typec@3d {
-		status = "okay";
-		compatible = "nxp,ptn5150";
-		reg = <0x3d>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_typec>;
-		connect-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-	};
 
 	ov5640_mipi1: ov5640_mipi1@3c {
 		status = "okay";
@@ -1041,8 +1028,10 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_ecspi1>;
 	cs-gpios = <&gpio5  9 GPIO_ACTIVE_HIGH>,
-		   <&gpio1 12 GPIO_ACTIVE_HIGH>;
-	fsl,spi-num-chipselects = <2>;
+		   <&gpio3 22 GPIO_ACTIVE_HIGH>,
+		   <&gpio1 12 GPIO_ACTIVE_HIGH>,
+		   <&gpio1 10 GPIO_ACTIVE_HIGH>;
+	fsl,spi-num-chipselects = <4>;
 	status = "okay";
 
 	/* Resistive touch controller */
